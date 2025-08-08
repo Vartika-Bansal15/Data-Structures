@@ -1,0 +1,50 @@
+ALGORITHM:
+
+STEP 1: Initialize an empty string longest.
+
+STEP 2: Loop through each index i in the string.
+
+STEP 3: Expand from center:
+->Check for odd-length palindrome (center at i).
+->Check for even-length palindrome (center at i and i+1).
+
+STEP 4: Update longest whenever a longer palindrome is found.
+
+STEP 5: Return longest.
+
+PROGRAM:
+
+public class LongestPalindrome {
+    public static String expand(String s, int left, int right) {
+        while (left >= 0 && right < s.length() && s.charAt(left) == s.charAt(right)) {
+            left--;
+            right++;
+        }
+        return s.substring(left + 1, right);
+    }
+
+    public static String longestPalindrome(String s) {
+        String longest = "";
+        for (int i = 0; i < s.length(); i++) {
+            String odd = expand(s, i, i);      
+            String even = expand(s, i, i + 1); 
+
+            if (odd.length() > longest.length()) longest = odd;
+            if (even.length() > longest.length()) longest = even;
+        }
+        return longest;
+    }
+
+    public static void main(String[] args) {
+        String input = "babad";
+        System.out.println("Longest Palindromic Substring: " + longestPalindrome(input));
+    }
+}
+
+OUTPUT:
+Longest Palindromic Substring: bab
+
+
+Complexities:
+Time: O(N^2) – expand around each center.
+Space: O(1) – only uses variables.
