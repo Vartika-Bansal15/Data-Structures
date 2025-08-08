@@ -1,0 +1,42 @@
+
+ALGORITHM:
+STEP 1: Merge both arrays into one sorted array.
+STEP 2: If total size is odd, return the middle element.
+STEP 3:If even, return average of two middle elements.
+
+
+PROGRAM:
+import java.util.*;
+
+public class MedianOfSortedArrays {
+    public static void main(String[] args) {
+        int[] a = {1, 3, 5};
+        int[] b = {2, 4, 6};
+
+        int[] merged = new int[a.length + b.length];
+        int i = 0, j = 0, k = 0;
+
+        while (i < a.length && j < b.length) {
+            if (a[i] < b[j]) merged[k++] = a[i++];
+            else merged[k++] = b[j++];
+        }
+        while (i < a.length) merged[k++] = a[i++];
+        while (j < b.length) merged[k++] = b[j++];
+
+        int n = merged.length;
+        double median;
+        if (n % 2 == 1) {
+            median = merged[n / 2];
+        } else {
+            median = (merged[n / 2 - 1] + merged[n / 2]) / 2.0;
+        }
+
+        System.out.println("Median: " + median);
+    }
+}
+
+OUTPUT:
+Median: 3.5
+
+Time Complexity: O(n + m)
+Space Complexity: O(n + m)
