@@ -1,0 +1,64 @@
+Algorithm:
+STEP 1: Traverse each node in List A.
+STEP 2: For each node in List A, check if it is equal (same reference) to any node in List B.
+STEP 3: If a match is found, return that node. That is the intersection point.
+STEP 4: If no match is found, return null.
+
+PROGRAM:
+
+class Node {
+    int data;
+    Node next;
+    Node(int data) {
+        this.data = data;
+        this.next = null;
+    }
+}
+
+public class LinkedListIntersection {
+    public static Node findIntersection(Node head1, Node head2) {
+        while (head1 != null) {
+           
+            Node temp = head2;
+            while (temp != null) {
+                if (head1 == temp) {
+                    return head1; 
+                }
+                temp = temp.next;
+            }
+            head1 = head1.next;
+        }
+        return null;
+    }
+
+    public static void main(String[] args) {
+       
+        Node common = new Node(6);
+        common.next = new Node(7);
+
+      
+        Node head1 = new Node(1);
+        head1.next = new Node(2);
+        head1.next.next = new Node(3);
+        head1.next.next.next = common;
+
+       
+        Node head2 = new Node(4);
+        head2.next = new Node(5);
+        head2.next.next = common;
+
+       
+        Node intersection = findIntersection(head1, head2);
+        if (intersection != null) {
+            System.out.println("Intersection at node: " + intersection.data);
+        } else {
+            System.out.println("No intersection found.");
+        }
+    }
+}
+
+OUTPUT:
+Intersection at node: 6
+
+ Time Complexity: O(m × n)
+ Space Complexity: O(1) 
