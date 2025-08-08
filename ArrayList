@@ -1,0 +1,64 @@
+
+import java.util.*;
+public class Main {
+    public static void main(String[] args) {
+       
+       // Syntax of ArrayList
+       ArrayList<Integer> list = new ArrayList<>();
+       
+       // add new element
+       list.add(5);
+       list.add(6);
+       list.add(7);
+       list.add(8);
+     
+       
+       // get an element at index i
+       System.out.println(list.get(1)+" ");  // 6
+       
+       // print with loop
+       for(int i=0; i<list.size(); i++){
+           System.out.print(list.get(i)+" "); // 5 6 7 8 
+       }
+       
+       // printing arraylist directly
+       System.out.print("\n"+list); // [5, 6, 7, 8]
+       
+       // adding element at some index i --> [5,100,6,7,8]
+       list.add(1,100); // index-1; value-100
+       System.out.print("\n"+list); // [5,100,6,7,8]
+       
+       // modifying element at index i
+       list.set(1,10);  
+        System.out.print("\n"+list); // [5,10,6,7,8]
+        
+        // removing an element at index i
+        list.remove(1);
+        System.out.print("\n"+list); //[5,6,7,8]
+        
+        // removing an element e
+        list.remove(Integer.valueOf(8));
+        System.out.print("\n"+list); //[5,6,7]
+        /*
+        for removal of index simply write list.remove(2) here 2 is the index
+        for removal of the element write Integer.valueOf(8) here 8 is the element
+        */
+        
+        System.out.println();
+        // remove non existing element in the arraylist
+        System.out.println(list.remove(Integer.valueOf(17)));  // return false
+        
+        // check if an element exists
+        boolean answer = list.contains(Integer.valueOf(6));
+        System.out.println(answer);
+        
+        
+        // if you dont specify class, you can put anything inside list
+        ArrayList list = new ArrayList();
+        l.add("p);
+        l.add(1);
+        l.add(true);
+        System.out.println(l); // [p, 1, true]
+        
+    }
+}
