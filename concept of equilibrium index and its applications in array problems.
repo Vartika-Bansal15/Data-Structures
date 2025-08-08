@@ -1,0 +1,50 @@
+Definition: An equilibrium index of an array is an index i where the sum of the 
+elements before it is equal to the sum of the elements after it.
+
+CONCEPT: 
+-> Calculate the total sum of the array.
+-> Traverse through the array while maintaining the sum of elements to the left.
+-> For each element at index i, check if the sum of elements to the left equals the sum of elements to the right.
+-> If they are equal, the index i is an equilibrium index.
+
+Applications:
+Array Partitioning: Used to find an index where you can partition the array into two parts with equal sums.
+Balance Point: Helps in finding a "balance point" where two parts of an array are equal in weight or value.
+Optimization Problems: Used in optimization problems where arrays need to be split based on certain conditions like balance
+or equal sum distribution.
+
+PEOGRAM:
+public class EquilibriumIndex {
+    public static int findEquilibriumIndex(int[] arr) {
+        int n = arr.length;
+        
+        for (int i = 0; i < n; i++) {
+            int leftSum = 0, rightSum = 0;
+            
+            for (int j = 0; j < i; j++) {
+                leftSum += arr[j];
+            }            
+         
+            for (int j = i + 1; j < n; j++) {
+                rightSum += arr[j];
+            }
+            
+            
+            if (leftSum == rightSum) {
+                return i; // Found equilibrium index
+            }
+        }
+        
+        return -1; 
+    }
+    
+    public static void main(String[] args) {
+        int[] arr = {1, 3, 5, 2, 2};
+        int index = findEquilibriumIndex(arr);
+        if (index != -1) {
+            System.out.println("Equilibrium index is: " + index);
+        } else {
+            System.out.println("No equilibrium index found.");
+        }
+    }
+}
