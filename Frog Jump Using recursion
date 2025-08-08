@@ -1,0 +1,21 @@
+public class MinEnergy {
+    public static int solve(int[] h, int i) {
+        if (i == 0) return 0;
+
+        int left = solve(h, i - 1) + Math.abs(h[i] - h[i - 1]);
+        
+        int right = Integer.MAX_VALUE;
+
+        if (i > 1) {
+            right = solve(h, i - 2) + Math.abs(h[i] - h[i - 2]);
+        }
+
+        return Math.min(left, right);
+    }
+
+    public static void main(String[] args) {
+        int[] h = {30, 20, 50, 10, 40};
+        int n = h.length;
+        System.out.println("Minimum energy: " + solve(h, n - 1));
+    }
+}
